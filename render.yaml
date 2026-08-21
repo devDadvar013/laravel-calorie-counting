@@ -1,0 +1,34 @@
+# ⚠️ این فایل شامل رمز واقعی دیتابیس است — فقط در مخزن خصوصی نگه دارید.
+# در Render بهتر است DB_URL را sync: false کنید و مقدار را در Environment → Secret بگذارید.
+services:
+  - type: web
+    name: laravel-calorie-counting
+    runtime: docker
+    plan: free
+    region: frankfurt
+    healthCheckPath: /up
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: "false"
+      - key: APP_KEY
+        sync: false
+      - key: APP_URL
+        value: https://laravel-calorie-counting.onrender.com
+      - key: LOG_CHANNEL
+        value: stderr
+      - key: DB_CONNECTION
+        value: pgsql
+      - key: DB_URL
+        value: postgresql://neondb_owner:npg_N9slr2hOIYKQ@ep-raspy-heart-axxo4vd6-pooler.c-4.us-east-2.aws.neon.tech/calorie-counting?sslmode=require&channel_binding=require
+      - key: DB_SSLMODE
+        value: require
+      - key: CACHE_STORE
+        value: file
+      - key: QUEUE_CONNECTION
+        value: sync
+      - key: SESSION_DRIVER
+        value: file
+      - key: SEED_DEMO
+        value: "true"
